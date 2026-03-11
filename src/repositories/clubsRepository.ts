@@ -1,13 +1,8 @@
 import { ClubModel } from "../models/clubModel";
-
-const database: ClubModel[] = [
-  { id: 1, name: "Real Madrid" },
-  { id: 2, name: "Barcelona" },
-  { id: 3, name: "Manchester United" },
-  { id: 4, name: "Liverpool" },
-  { id: 5, name: "Bayern Munich" },
-];
+import fs from "fs/promises";
 
 export const findAllClubsRepository = async (): Promise<ClubModel[]> => {
-  return database;
+  const data = await fs.readFile("./src/data/clubs.json", "utf-8");
+  const clubs: ClubModel[] = JSON.parse(data);
+  return clubs;
 };
