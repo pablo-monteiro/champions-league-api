@@ -3,6 +3,7 @@ import {
   getAllPlayersService,
   getPlayerByIdService,
   postPlayerService,
+  deletePlayerService,
 } from "../services/playersService";
 
 export const getAllPlayersController = async (req: Request, res: Response) => {
@@ -19,6 +20,13 @@ export const getPlayerByIdController = async (req: Request, res: Response) => {
 export const postPlayerController = async (req: Request, res: Response) => {
   const body = req.body;
   const httpResponse = await postPlayerService(body);
+
+  return res.status(httpResponse.statusCode).json(httpResponse.body);
+};
+
+export const deletePlayerController = async (req: Request, res: Response) => {
+  const id = Number(req.params.id);
+  const httpResponse = await deletePlayerService(id);
 
   return res.status(httpResponse.statusCode).json(httpResponse.body);
 };
