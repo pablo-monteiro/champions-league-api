@@ -335,6 +335,10 @@ const database: PlayerModel[] = [
   },
 ];
 
+export const findAllPlayersRepository = async (): Promise<PlayerModel[]> => {
+  return database;
+};
+
 export const findPlayerByIdRepository = async (
   id: number,
 ): Promise<PlayerModel | undefined> => {
