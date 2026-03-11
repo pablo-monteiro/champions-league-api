@@ -5,12 +5,12 @@ export interface PlayerModel {
   nationality: string;
   position: string;
   statistics: {
-    Overall: number;
-    Pace: number;
-    Shooting: number;
-    Passing: number;
-    Dribbling: number;
-    Defending: number;
-    Physical: number;
+    overall: number;
+    pace: number;
+    shooting: number;
+    passing: number;
+    dribbling: number;
+    defending: number;
+    physical: number;
   };
 }

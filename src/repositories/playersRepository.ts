@@ -1,4 +1,5 @@
 import { PlayerModel } from "../models/playersModel";
+import { StatisticsModel } from "../models/statisticsModel";
 
 const database: PlayerModel[] = [
   {
@@ -8,13 +9,13 @@ const database: PlayerModel[] = [
     nationality: "Argentina",
     position: "Forward",
     statistics: {
-      Overall: 93,
-      Pace: 85,
-      Shooting: 94,
-      Passing: 91,
-      Dribbling: 95,
-      Defending: 38,
-      Physical: 85,
+      overall: 93,
+      pace: 85,
+      shooting: 94,
+      passing: 91,
+      dribbling: 95,
+      defending: 38,
+      physical: 85,
     },
   },
   {
@@ -24,13 +25,13 @@ const database: PlayerModel[] = [
     nationality: "Portugal",
     position: "Forward",
     statistics: {
-      Overall: 92,
-      Pace: 88,
-      Shooting: 92,
-      Passing: 89,
-      Dribbling: 92,
-      Defending: 36,
-      Physical: 86,
+      overall: 92,
+      pace: 88,
+      shooting: 92,
+      passing: 89,
+      dribbling: 92,
+      defending: 36,
+      physical: 86,
     },
   },
   {
@@ -40,13 +41,13 @@ const database: PlayerModel[] = [
     nationality: "Uruguay",
     position: "Forward",
     statistics: {
-      Overall: 91,
-      Pace: 86,
-      Shooting: 90,
-      Passing: 88,
-      Dribbling: 91,
-      Defending: 37,
-      Physical: 84,
+      overall: 91,
+      pace: 86,
+      shooting: 90,
+      passing: 88,
+      dribbling: 91,
+      defending: 37,
+      physical: 84,
     },
   },
   {
@@ -56,13 +57,13 @@ const database: PlayerModel[] = [
     nationality: "Brazil",
     position: "Forward",
     statistics: {
-      Overall: 92,
-      Pace: 87,
-      Shooting: 92,
-      Passing: 89,
-      Dribbling: 92,
-      Defending: 36,
-      Physical: 86,
+      overall: 92,
+      pace: 87,
+      shooting: 92,
+      passing: 89,
+      dribbling: 92,
+      defending: 36,
+      physical: 86,
     },
   },
 ];
@@ -86,5 +87,21 @@ export const deletePlayerRepository = async (id: number) => {
 
   if (index !== -1) {
     database.splice(index, 1);
+    return true;
   }
+
+  return false;
+};
+
+export const findAndModifyPlayerRepository = async (
+  id: number,
+  statistics: StatisticsModel,
+): Promise<PlayerModel> => {
+  const playerIndex = database.findIndex((player) => player.id === id);
+
+  if (playerIndex !== -1) {
+    database[playerIndex].statistics = statistics;
+  }
+
+  return database[playerIndex];
 };

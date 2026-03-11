@@ -28,11 +28,9 @@ export const serverError = async (): Promise<HttpResponse> => {
   };
 };
 
-export const created = async (): Promise<HttpResponse> => {
+export const created = async (data?: any): Promise<HttpResponse> => {
   return {
     statusCode: 201,
-    body: {
-      message: "successfully created",
-    },
+    body: data,
   };
 };
